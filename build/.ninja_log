@@ -1,0 +1,7 @@
+# ninja log v6
+42	2067	7494939262398598	CMakeFiles/ChildProcess1.dir/child.cpp.obj	d2112321613173b2
+49	2041	7494939262475992	CMakeFiles/ChildProcess2.dir/child.cpp.obj	6e93ffea9972be71
+37	2096	7494939262350649	CMakeFiles/parent.dir/parent.cpp.obj	4b6be08a9ce4b5dc
+2068	3435	7494939282659265	ChildProcess1.exe	da69741bc042ebe2
+2096	3462	7494939282940661	parent.exe	448475d1d4f3364a
+2041	3446	7494939282390367	ChildProcess2.exe	9b46b9fa68a94baf
