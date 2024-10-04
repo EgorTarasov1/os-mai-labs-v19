@@ -1,4 +1,3 @@
-#include <windows.h>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -19,28 +18,19 @@ int main(int argc, char *argv[]) {
         std::cerr << "File name argument is missing." << std::endl;
         return 1;
     }
-    std::ofstream outFile(argv[1], std::ofstream::out);
 
-    // Подготовка для чтения из стандартного ввода (канала)
-    char buffer[256];
-    DWORD bytesRead;
-
-    while (true) {
-        BOOL result = ReadFile(GetStdHandle(STD_INPUT_HANDLE), buffer, 255, &bytesRead, NULL);
-        if (!result || bytesRead == 0) break; // Выход из цикла, если чтение завершилось
-        buffer[bytesRead] = '\0'; // Обеспечение нуль-терминированной строки
-        std::string output = removeVowels(std::string(buffer));
-        if (outFile.is_open()) {
-            outFile << output << std::endl;
-        } else {
-            std::cerr << "Failed to open file for writing." << std::endl;
-            return 1;
-        }
+    std::ofstream outFile(argv[1]);
+    if (!outFile.is_open()) {
+        std::cerr << "Failed to open file for writing." << std::endl;
+        return 1;
     }
+
+    std::string inputLine;
+    while (std::getline(std::cin, inputLine)) {
+        std::string output = removeVowels(inputLine);
+        outFile << output << std::endl;
+    }
+
     outFile.close();
-
-    // Закрытие стандартного ввода
-    CloseHandle(GetStdHandle(STD_INPUT_HANDLE));
-
     return 0;
 }
